@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionnaire</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf7f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 120px;
+      height: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #5a0c54;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #5a0c54;
+    }
+
+    .question input[type="text"],
+    .question textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #d9d2cb;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #5a0c54;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3e073d;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <img src="/mnt/data/Modern Elegant Circle Signature Typography Logo.png" alt="Logo" class="logo">
+  <div class="container">
+    <h1>Questionnaire</h1>
+    <form id="questionnaireForm">
+      <!-- Question 1 -->
+      <div class="question">
+        <label for="q1">Question 1:</label>
+        <input type="text" id="q1" name="q1" required>
+        <div class="error" id="error-q1"></div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question">
+        <label for="q2">Question 2:</label>
+        <input type="text" id="q2" name="q2" required>
+        <div class="error" id="error-q2"></div>
+      </div>
+
+      <!-- Add more questions here -->
+      <!-- You can duplicate the block above and change the ids/labels -->
+
+      <!-- Example: Question 3 -->
+      <div class="question">
+        <label for="q3">Question 3:</label>
+        <textarea id="q3" name="q3" rows="3" required></textarea>
+        <div class="error" id="error-q3"></div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('questionnaireForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      let isValid = true;
+
+      // Clear previous errors
+      document.querySelectorAll('.error').forEach(errorDiv => errorDiv.textContent = '');
+
+      // Validate each input
+      const inputs = document.querySelectorAll('#questionnaireForm input, #questionnaireForm textarea');
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          isValid = false;
+          document.getElementById(`error-${input.id}`).textContent = 'This field is required.';
+        }
+      });
+
+      if (isValid) {
+        alert('Form submitted successfully!');
+        // You can handle the form data here, e.g., send it to a server
+        const formData = new FormData(this);
+        console.log(Object.fromEntries(formData));
+      }
+    });
+  </script>
+</body>
+</html>
