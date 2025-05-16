@@ -25,19 +25,26 @@ def send_otp():
     return jsonify({"message": "OTP sent successfully!   "+name+"  "+address+"  "+str(otp)})
 
 
-@app.route('/verify-otp', methods=['POST'])
+
+#checking and returning the status
+@app.route('/verify-otp', methods=['GET'])
 def verify_otp():
-    data = request.json
-    recipient = data.get("email")
-    user_otp = int(data.get("otp"))
+    recipient = request.args.get("email")
+    user_otp = request.args.get("otp")
 
     if not recipient or not user_otp:
-        return jsonify({"error": "Email and OTP are required"}), 400
+        return jsonify({"status": 2}), 400
+
+    try:
+        user_otp = int(user_otp)
+    except ValueError:
+        return jsonify({"status": 2}), 400
 
     if otp_storage.get(recipient) == user_otp:
-        return jsonify({"message": "Authentication successful"})
+        return jsonify({"status": 1})  # success
     else:
-        return jsonify({"error": "Incorrect OTP"}), 401
+        return jsonify({"status": 0}), 401  # failure
+
 
 
 if __name__ == '__main__':
