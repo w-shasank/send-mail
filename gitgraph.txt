@@ -1,0 +1,14 @@
+*   0d87644 Merge branch 'dev' into main to synchronize all recent changes.
+|\  
+| * 67172a1 delete unnecessary folder
+| * 08bc74d remove deleted files
+| * e515411 add the frontend and assets of the project
+| * 65fb555 new ui design and added suuces and faikl page
+| *   284c990 Merge branch 'shiv' into dev
+| |\  
+| | * 69cb3e9 api integrated
+| * | c93d674 git ignore added
+| |/  
+* / d8ca05d resolved some malicious problems
+|/  
+* 7a0837b project init
